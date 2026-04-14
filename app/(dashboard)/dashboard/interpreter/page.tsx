@@ -16,8 +16,8 @@ export default function InterpreterPage() {
             </div>
 
             <motion.div 
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
                 className="max-w-4xl"
             >
                 <div className="flex items-center gap-4 mb-6">
@@ -80,11 +80,7 @@ export default function InterpreterPage() {
                                     <p className="pl-4 text-white">  <span className="text-emerald-500">return</span> modules.<span className="text-yellow-400">map</span>(m ={">"} m.<span className="text-yellow-400">evaluateComplexity</span>());</p>
                                     <p className="text-white">{"}"}</p>
                                 </div>
-                                <motion.div 
-                                    animate={{ opacity: [0, 1, 0] }}
-                                    transition={{ repeat: Infinity, duration: 1 }}
-                                    className="w-2 h-4 bg-emerald-500 inline-block ml-1 align-middle"
-                                />
+                                <div className="w-2 h-4 bg-emerald-500 inline-block ml-1 align-middle" />
                             </div>
                         </div>
                     </motion.div>

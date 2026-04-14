@@ -16,8 +16,8 @@ export default function APIPage() {
             </div>
 
             <motion.div 
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
                 className="max-w-4xl"
             >
                 <div className="flex items-center gap-4 mb-6">

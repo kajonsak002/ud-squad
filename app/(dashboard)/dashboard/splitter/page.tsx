@@ -16,8 +16,8 @@ export default function SplitterPage() {
             </div>
 
             <motion.div 
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
                 className="max-w-4xl"
             >
                 <div className="flex items-center gap-4 mb-6">
@@ -63,24 +63,19 @@ export default function SplitterPage() {
                             <div className="w-32 h-32 rounded-3xl bg-white/5 border border-white/10 flex flex-col items-center justify-center relative">
                                 <div className="absolute -top-3 px-3 py-1 bg-white/10 rounded-lg text-[9px] font-black text-gray-400 uppercase tracking-widest">Monolith</div>
                                 <div className="grid grid-cols-2 gap-2">
-                                    {[1, 2, 3, 4].map(n => <div key={n} className={`w-4 h-4 rounded-sm ${n === 2 ? 'bg-orange-500 animate-pulse' : 'bg-white/10'}`} />)}
+                                    {[1, 2, 3, 4].map(n => <div key={n} className={`w-4 h-4 rounded-sm ${n === 2 ? 'bg-orange-500' : 'bg-white/10'}`} />)}
                                 </div>
                             </div>
 
                             {/* Connection */}
                             <div className="flex-1 h-px bg-dashed border-t border-dashed border-white/10 relative hidden md:block">
-                                <motion.div 
-                                    animate={{ left: ["0%", "100%"] }}
-                                    transition={{ repeat: Infinity, duration: 2, ease: "linear" }}
-                                    className="absolute -top-1 w-2 h-2 rounded-full bg-orange-500 shadow-[0_0_10px_#f97316]"
-                                />
                             </div>
 
                             {/* New Microservice Node */}
                             <motion.div 
-                                initial={{ scale: 0.8, opacity: 0 }}
-                                animate={{ scale: 1, opacity: 1 }}
-                                transition={{ delay: 0.5 }}
+                                initial={{ opacity: 0 }}
+                                animate={{ opacity: 1 }}
+                                transition={{ delay: 0.3 }}
                                 className="w-40 h-40 rounded-full bg-orange-500/10 border border-orange-500/30 flex flex-col items-center justify-center relative shadow-[0_0_50px_rgba(249,115,22,0.1)]"
                             >
                                 <div className="absolute -top-3 px-3 py-1 bg-orange-500 text-black rounded-lg text-[9px] font-black uppercase tracking-widest">New Service</div>

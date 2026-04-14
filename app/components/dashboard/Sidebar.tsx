@@ -137,7 +137,7 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
                             initial={{ x: "-100%" }}
                             animate={{ x: 0 }}
                             exit={{ x: "-100%" }}
-                            transition={{ type: "spring", damping: 25, stiffness: 200 }}
+                            transition={{ duration: 0.3, ease: "easeOut" }}
                             className="absolute inset-y-0 left-0"
                         >
                             {sidebarContent}

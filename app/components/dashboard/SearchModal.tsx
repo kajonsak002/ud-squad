@@ -35,9 +35,9 @@ export default function SearchModal({ isOpen, onClose }: { isOpen: boolean; onCl
                     />
                     
                     <motion.div
-                        initial={{ opacity: 0, scale: 0.95, y: -20 }}
-                        animate={{ opacity: 1, scale: 1, y: 0 }}
-                        exit={{ opacity: 0, scale: 0.95, y: -20 }}
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
                         className="relative w-full max-w-2xl bg-[#0a0a0a] border border-white/10 rounded-[2.5rem] shadow-2xl overflow-hidden"
                     >
                         <div className="p-6 border-b border-white/5 flex items-center gap-4">

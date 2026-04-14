@@ -63,9 +63,9 @@ export default function DashboardPage() {
                 {stats.map((stat, idx) => (
                     <motion.div
                         key={idx}
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: idx * 0.1 }}
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ delay: idx * 0.05 }}
                         className="p-6 rounded-2xl bg-white/[0.03] border border-white/5 hover:border-white/10 transition-all group"
                     >
                         <div className="flex items-center justify-between mb-4">
@@ -113,16 +113,16 @@ export default function DashboardPage() {
                                 </linearGradient>
                             </defs>
                             <motion.path
-                                initial={{ pathLength: 0, opacity: 0 }}
-                                animate={{ pathLength: 1, opacity: 1 }}
-                                transition={{ duration: 2, ease: "easeInOut" }}
+                                initial={{ opacity: 0 }}
+                                animate={{ opacity: 1 }}
+                                transition={{ duration: 0.5 }}
                                 d="M0,80 Q50,40 100,70 T200,30 T300,60 T400,20 L400,100 L0,100 Z"
                                 fill="url(#gradient)"
                             />
                             <motion.path
-                                initial={{ pathLength: 0 }}
-                                animate={{ pathLength: 1 }}
-                                transition={{ duration: 2, ease: "easeInOut" }}
+                                initial={{ opacity: 0 }}
+                                animate={{ opacity: 1 }}
+                                transition={{ duration: 0.5 }}
                                 d="M0,80 Q50,40 100,70 T200,30 T300,60 T400,20"
                                 fill="none"
                                 stroke="#10b981"
@@ -148,7 +148,7 @@ export default function DashboardPage() {
                 {/* Recent Activities Prototype */}
                 <div className="rounded-[2.5rem] bg-white/[0.02] border border-white/5 p-8 flex flex-col">
                     <h3 className="text-white font-bold mb-8 text-sm flex items-center gap-2">
-                        <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                        <div className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
                         Live Intelligence stream
                     </h3>
                     <div className="space-y-8 flex-1">

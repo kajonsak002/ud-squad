@@ -26,11 +26,7 @@ export default function SidebarItem({ icon: Icon, label, href, isActive }: Sideb
             </span>
 
             {isActive && (
-                <motion.div
-                    layoutId="activeSide"
-                    className="absolute left-0 w-1 h-5 bg-emerald-500 rounded-r-full"
-                    transition={{ type: "spring", stiffness: 300, damping: 30 }}
-                />
+                <div className="absolute left-0 w-1 h-5 bg-emerald-500 rounded-r-full" />
             )}
         </Link>
     );

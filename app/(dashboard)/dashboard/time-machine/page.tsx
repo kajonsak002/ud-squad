@@ -16,8 +16,8 @@ export default function TimeMachinePage() {
             </div>
 
             <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
                 className="max-w-4xl"
             >
                 <div className="flex items-center gap-4 mb-6">
@@ -57,9 +57,9 @@ export default function TimeMachinePage() {
                 {/* Interactive Player Prototype */}
                 <div className="lg:col-span-3 space-y-6">
                     <motion.div
-                        initial={{ opacity: 0, scale: 0.98 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        transition={{ delay: 0.2 }}
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ delay: 0.1 }}
                         className="min-h-[500px] rounded-3xl border border-white/5 bg-white/[0.01] flex flex-col overflow-hidden"
                     >
                         <div className="p-8 border-b border-white/5 flex flex-col md:flex-row md:items-center justify-between gap-4 bg-white/[0.02]">
@@ -102,9 +102,9 @@ export default function TimeMachinePage() {
                                     </div>
                                 </div>
                                 <motion.div
-                                    initial={{ x: 20, opacity: 0 }}
-                                    animate={{ x: 0, opacity: 1 }}
-                                    transition={{ delay: 0.6 }}
+                                    initial={{ opacity: 0 }}
+                                    animate={{ opacity: 1 }}
+                                    transition={{ delay: 0.3 }}
                                     className="p-6 rounded-2xl bg-pink-500/[0.03] border border-pink-500/20 backdrop-blur-md shadow-2xl shadow-pink-500/5 relative"
                                 >
                                     <div className="absolute -top-2 -right-2 px-3 py-1 bg-pink-500 text-black rounded-lg text-[10px] font-black uppercase">Selected</div>

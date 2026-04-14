@@ -71,8 +71,8 @@ export default function VisualizerPage() {
                             <motion.div
                                 key={i}
                                 initial={{ scale: 0 }}
-                                animate={{ scale: 1 }}
-                                transition={{ delay: 0.5 + i * 0.1 }}
+                                animate={{ opacity: 1 }}
+                                transition={{ delay: 0.5 + i * 0.1, duration: 0.3 }}
                                 className={`absolute -translate-x-1/2 -translate-y-1/2 p-4 rounded-2xl border backdrop-blur-xl transition-all cursor-pointer group ${node.core ? 'bg-emerald-500 text-black border-transparent shadow-[0_0_30px_rgba(16,185,129,0.5)]' : 'bg-black/40 border-white/10 hover:border-emerald-500/50'}`}
                                 style={{ left: node.x, top: node.y }}
                             >
@@ -85,15 +85,6 @@ export default function VisualizerPage() {
                                 </div>
                             </motion.div>
                         ))}
-
-                        {/* Analysis Overlay */}
-                        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none">
-                            <motion.div 
-                                animate={{ rotate: 360 }}
-                                transition={{ repeat: Infinity, duration: 10, ease: "linear" }}
-                                className="w-64 h-64 border border-emerald-500/10 rounded-full"
-                            />
-                        </div>
                     </div>
                 </div>
 

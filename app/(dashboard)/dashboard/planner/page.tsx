@@ -16,8 +16,8 @@ export default function PlannerPage() {
             </div>
 
             <motion.div 
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
                 className="max-w-4xl"
             >
                 <div className="flex items-center gap-4 mb-6">
@@ -62,11 +62,9 @@ export default function PlannerPage() {
                                         <span>{item.progress}%</span>
                                     </div>
                                     <div className="h-1.5 w-full bg-white/5 rounded-full overflow-hidden">
-                                        <motion.div 
-                                            initial={{ width: 0 }}
-                                            animate={{ width: `${item.progress}%` }}
-                                            transition={{ duration: 1, delay: 0.5 }}
+                                        <div 
                                             className={`h-full ${item.progress === 100 ? 'bg-emerald-500' : 'bg-purple-500'}`}
+                                            style={{ width: `${item.progress}%` }}
                                         />
                                     </div>
                                 </div>
