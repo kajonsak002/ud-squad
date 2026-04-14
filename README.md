@@ -1,36 +1,64 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# UD-Squad AI: Intelligence Systems Platform
 
-## Getting Started
+![UD-Squad Banner](https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&q=80&w=1200)
 
-First, run the development server:
+**UD-Squad** is a high-fidelity, premium AI intelligence platform designed for deep codebase analysis, security auditing, and architectural modernization. Built with a focus on **Precision Minimalism**, it offers a suite of advanced tools for engineers and architects.
 
+## 🚀 Vision
+To empower development teams with AI-driven insights that transform legacy monoliths into modern, scalable, and secure microservice architectures.
+
+## ✨ Core Features
+
+### 🛠️ Intelligence Suite
+- **Code Interpreter**: Real-time code execution and deep logic analysis.
+- **Security Guard**: Automated vulnerability scanning and active threat prevention.
+- **Refactoring Planner**: Strategic roadmaps for codebase modernization.
+- **Microservices Splitter**: Visual domain analysis and service extraction wizard.
+- **Dependency Visualizer**: Interactive graph representations of system relationships.
+
+### 🕒 Advanced Tools
+- **Onboarding Time Machine**: Replay and understand the evolution of your architecture.
+- **Database Bridge**: Intelligent schema synchronization and data migration mapping.
+- **API Adapter**: Instant SDK generation and endpoint contract verification.
+- **Assessment Reports**: Executive-level quality and security audits (PDF/JSON).
+
+## 🎨 Design System: "Precision Minimalism"
+The platform adheres to a strict, premium aesthetic:
+- **Tonal Layering**: Depth achieved through opacity and blur rather than borders.
+- **Glassmorphism**: Extensive use of `backdrop-blur` and `bg-white/5` for a tactile feel.
+- **Emerald Accents**: Strategic use of `#10b981` to guide focus.
+- **Fluid Motion**: Powered by `framer-motion` for meaningful transitions.
+
+## 🛠️ Technical Stack
+- **Framework**: Next.js 16 (App Router)
+- **Styling**: Tailwind CSS v4
+- **Animations**: Framer Motion
+- **Icons**: Lucide React
+- **Language**: TypeScript (Strict Mode)
+
+## 📦 Getting Started
+
+### Prerequisites
+- Node.js 20+
+- npm / pnpm
+
+### Installation
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone https://github.com/kajonsak002/ud-squad.git
+cd ud-squad
+npm install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Development
+```bash
+npm run dev
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Production Build
+```bash
+npm run build
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+---
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Built with ❤️ by the **UD-Squad AI** Team.

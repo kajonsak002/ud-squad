@@ -32,48 +32,79 @@ export default function SecurityPage() {
                 </p>
             </motion.div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <motion.div 
-                    initial={{ opacity: 0, scale: 0.95 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ delay: 0.2 }}
-                    className="p-8 rounded-3xl border border-white/5 bg-white/[0.02] relative group overflow-hidden"
-                >
-                    <div className="absolute top-0 right-0 p-6 opacity-10 group-hover:opacity-20 transition-opacity">
-                        <ShieldAlert size={80} className="text-emerald-400" />
-                    </div>
-                    <h3 className="text-white font-bold text-lg mb-4 flex items-center gap-2">
-                        <ShieldAlert size={18} className="text-emerald-400" />
-                        Vulnerability Scanner
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                {/* Threat List */}
+                <div className="lg:col-span-2 space-y-6">
+                    <h3 className="text-white font-bold text-sm tracking-tight flex items-center gap-2">
+                        <ShieldAlert size={16} className="text-emerald-400" />
+                        Recent Security Events
                     </h3>
-                    <p className="text-gray-500 text-sm leading-relaxed mb-6">
-                        No critical vulnerabilities detected in the last scan. System status is currently optimal.
-                    </p>
-                    <button className="px-6 py-2.5 rounded-xl border border-white/10 text-white font-bold text-xs hover:bg-white/5 transition-all">
-                        Run Full Scan
-                    </button>
-                </motion.div>
+                    <div className="bg-white/[0.02] border border-white/5 rounded-3xl overflow-hidden">
+                        <table className="w-full text-left text-xs border-collapse">
+                            <thead>
+                                <tr className="bg-white/[0.03] text-gray-500 uppercase font-black tracking-widest border-b border-white/5">
+                                    <th className="px-6 py-4">Threat Type</th>
+                                    <th className="px-6 py-4">Status</th>
+                                    <th className="px-6 py-4 text-right">Severity</th>
+                                </tr>
+                            </thead>
+                            <tbody className="divide-y divide-white/5">
+                                {[
+                                    { type: "Hardcoded API Key", status: "Detected", severity: "Critical", color: "text-red-400" },
+                                    { type: "Insecure Dependencies", status: "Resolved", severity: "High", color: "text-orange-400" },
+                                    { type: "XSS Vulnerability", status: "Review Required", severity: "Medium", color: "text-amber-400" },
+                                    { type: "Unprotected Endpoint", status: "Automated Fix", severity: "Low", color: "text-blue-400" }
+                                ].map((threat, i) => (
+                                    <tr key={i} className="hover:bg-white/[0.01] transition-colors group">
+                                        <td className="px-6 py-4">
+                                            <p className="font-bold text-white group-hover:text-emerald-400 transition-colors">{threat.type}</p>
+                                            <p className="text-[10px] text-gray-500 mt-1 uppercase font-mono">src/api/auth.ts:24</p>
+                                        </td>
+                                        <td className="px-6 py-4">
+                                            <span className="px-2 py-0.5 rounded-md bg-white/5 text-gray-400 font-bold uppercase text-[9px]">
+                                                {threat.status}
+                                            </span>
+                                        </td>
+                                        <td className="px-6 py-4 text-right font-black uppercase tracking-tighter">
+                                            <span className={threat.color}>{threat.severity}</span>
+                                        </td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
 
-                <motion.div 
-                    initial={{ opacity: 0, scale: 0.95 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ delay: 0.3 }}
-                    className="p-8 rounded-3xl border border-white/5 bg-white/[0.02] relative group overflow-hidden"
-                >
-                    <div className="absolute top-0 right-0 p-6 opacity-10 group-hover:opacity-20 transition-opacity">
-                        <Eye size={80} className="text-blue-400" />
-                    </div>
-                    <h3 className="text-white font-bold text-lg mb-4 flex items-center gap-2">
-                        <Eye size={18} className="text-blue-400" />
-                        Access Logs
+                {/* Configuration Panel */}
+                <div className="space-y-6">
+                    <h3 className="text-white font-bold text-sm tracking-tight flex items-center gap-2">
+                        <Lock size={16} className="text-emerald-400" />
+                        Active Protection
                     </h3>
-                    <p className="text-gray-500 text-sm leading-relaxed mb-6">
-                        Real-time monitoring of all file access and modifications within the repository.
-                    </p>
-                    <button className="px-6 py-2.5 rounded-xl border border-white/10 text-white font-bold text-xs hover:bg-white/5 transition-all">
-                        View Logs
-                    </button>
-                </motion.div>
+                    <div className="bg-white/[0.02] border border-white/5 rounded-3xl p-6 space-y-6">
+                        {[
+                            { name: "Real-time Secret Scanning", enabled: true, desc: "Detects passwords and keys in code." },
+                            { name: "WAF Intelligence Layer", enabled: true, desc: "Adaptive firewall for API endpoints." },
+                            { name: "Zero-Trust Mesh", enabled: false, desc: "Enforce strict identity validation." }
+                        ].map((setting, i) => (
+                            <div key={i} className="flex items-start justify-between gap-4">
+                                <div>
+                                    <p className="text-white text-[13px] font-bold mb-1">{setting.name}</p>
+                                    <p className="text-gray-500 text-[10px] leading-relaxed">{setting.desc}</p>
+                                </div>
+                                <div className={`w-10 h-6 p-1 rounded-full border border-white/10 transition-colors ${setting.enabled ? 'bg-emerald-500/20 border-emerald-500/30' : 'bg-white/5'}`}>
+                                    <div className={`w-3.5 h-3.5 rounded-full transition-all ${setting.enabled ? 'bg-emerald-500 translate-x-4' : 'bg-gray-600'}`} />
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                    <div className="p-6 rounded-3xl bg-gradient-to-br from-indigo-500/10 to-transparent border border-indigo-500/20">
+                        <p className="text-indigo-400 font-black text-[10px] uppercase tracking-widest mb-2">Pro Tip</p>
+                        <p className="text-gray-400 text-xs leading-relaxed italic">
+                            Enable the Zero-Trust mesh to automatically rotate credentials every 24 hours.
+                        </p>
+                    </div>
+                </div>
             </div>
         </div>
     );

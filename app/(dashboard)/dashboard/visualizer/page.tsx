@@ -50,17 +50,49 @@ export default function VisualizerPage() {
                 </div>
 
                 {/* Empty State / Canvas Simulation */}
-                <div className="absolute inset-0 flex flex-col items-center justify-center p-6">
-                    <div className="relative flex flex-col items-center">
-                        <motion.div
-                            animate={{ scale: [1, 1.1, 1], rotate: [0, 5, 0] }}
-                            transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-                            className="w-32 h-32 md:w-48 md:h-48 rounded-full bg-emerald-500/5 border border-emerald-500/20 flex items-center justify-center"
-                        >
-                            <Network size={32} className="text-emerald-500 opacity-20" />
-                        </motion.div>
-                        <div className="mt-6 md:mt-8 text-center italic text-gray-600 font-serif text-sm md:text-base px-4">
-                            Canvas ready. Load a system manifest to begin visualization.
+                <div className="absolute inset-0 p-12">
+                    <div className="relative w-full h-full">
+                        {/* Connecting Lines */}
+                        <svg className="absolute inset-0 w-full h-full opacity-20">
+                            <line x1="20%" y1="30%" x2="50%" y2="50%" stroke="#10b981" strokeWidth="1" strokeDasharray="4 4" />
+                            <line x1="80%" y1="20%" x2="50%" y2="50%" stroke="#10b981" strokeWidth="1" />
+                            <line x1="40%" y1="80%" x2="50%" y2="50%" stroke="#3b82f6" strokeWidth="1" />
+                            <line x1="70%" y1="70%" x2="50%" y2="50%" stroke="#ef4444" strokeWidth="1" />
+                        </svg>
+
+                        {/* Nodes */}
+                        {[
+                            { x: "20%", y: "30%", color: "bg-emerald-500", label: "AuthService" },
+                            { x: "80%", y: "20%", color: "bg-emerald-500", label: "UserDB" },
+                            { x: "50%", y: "50%", color: "bg-white", label: "Gateway", core: true },
+                            { x: "40%", y: "80%", color: "bg-blue-500", label: "Cache_L1" },
+                            { x: "70%", y: "70%", color: "bg-red-500", label: "Logger_X" }
+                        ].map((node, i) => (
+                            <motion.div
+                                key={i}
+                                initial={{ scale: 0 }}
+                                animate={{ scale: 1 }}
+                                transition={{ delay: 0.5 + i * 0.1 }}
+                                className={`absolute -translate-x-1/2 -translate-y-1/2 p-4 rounded-2xl border backdrop-blur-xl transition-all cursor-pointer group ${node.core ? 'bg-emerald-500 text-black border-transparent shadow-[0_0_30px_rgba(16,185,129,0.5)]' : 'bg-black/40 border-white/10 hover:border-emerald-500/50'}`}
+                                style={{ left: node.x, top: node.y }}
+                            >
+                                <div className="flex items-center gap-3">
+                                    <div className={`w-2 h-2 rounded-full ${node.core ? 'bg-black' : node.color}`} />
+                                    <span className={`text-[10px] font-black uppercase tracking-widest ${node.core ? 'text-black' : 'text-white'}`}>{node.label}</span>
+                                </div>
+                                <div className="mt-2 text-[8px] text-gray-500 hidden group-hover:block uppercase tracking-tighter">
+                                    Latency: 4ms • Status: Up
+                                </div>
+                            </motion.div>
+                        ))}
+
+                        {/* Analysis Overlay */}
+                        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none">
+                            <motion.div 
+                                animate={{ rotate: 360 }}
+                                transition={{ repeat: Infinity, duration: 10, ease: "linear" }}
+                                className="w-64 h-64 border border-emerald-500/10 rounded-full"
+                            />
                         </div>
                     </div>
                 </div>

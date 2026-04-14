@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import { useLanguage } from "../../../contexts/LanguageContext";
-import { Smartphone, ChevronRight, Zap, Box } from "lucide-react";
+import { Smartphone, ChevronRight, Zap, Box, Search } from "lucide-react";
 
 export default function APIPage() {
     const { t } = useLanguage();
@@ -32,54 +32,84 @@ export default function APIPage() {
                 </p>
             </motion.div>
 
-            <div className="flex flex-wrap gap-4">
-                {["REST", "GraphQL", "gRPC", "SOAP", "Webhooks"].map((tech) => (
-                    <div key={tech} className="px-5 py-2 rounded-full border border-white/10 bg-white/[0.03] text-gray-400 text-xs font-bold hover:border-teal-400 transition-colors cursor-default">
-                        {tech}
+            <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
+                {/* Method Filter Sidebar */}
+                <div className="lg:col-span-1 space-y-6">
+                    <h3 className="text-white font-bold text-sm tracking-tight">Protocols</h3>
+                    <div className="flex flex-col gap-2">
+                        {["REST", "GraphQL", "gRPC", "Webhooks"].map((tech) => (
+                            <div key={tech} className={`px-4 py-3 rounded-xl border transition-all cursor-pointer flex justify-between items-center ${tech === 'REST' ? 'border-teal-400 bg-teal-400/5 text-teal-400' : 'border-white/5 bg-white/[0.02] text-gray-500 hover:text-white hover:border-white/10'}`}>
+                                <span className="text-xs font-bold uppercase tracking-widest">{tech}</span>
+                                {tech === 'REST' && <div className="w-1.5 h-1.5 rounded-full bg-teal-400 animate-pulse" />}
+                            </div>
+                        ))}
                     </div>
-                ))}
-            </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <motion.div 
-                    initial={{ opacity: 0, scale: 0.98 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ delay: 0.2 }}
-                    className="p-8 rounded-3xl border border-white/5 bg-gradient-to-br from-teal-500/5 to-transparent relative group"
-                >
-                    <div className="flex items-center gap-4 mb-6">
-                        <div className="w-12 h-12 rounded-2xl bg-teal-500 flex items-center justify-center text-black">
-                            <Zap size={24} />
+                    <div className="pt-6 border-t border-white/5">
+                        <h4 className="text-[10px] font-black uppercase text-gray-600 tracking-widest mb-4">Quick Generation</h4>
+                        <div className="space-y-3">
+                            {["TypeScript SDK", "Python Client", "Golang Types"].map(sdk => (
+                                <button key={sdk} className="w-full py-3 rounded-xl bg-white/5 border border-white/5 text-white text-[10px] font-bold hover:bg-white/10 transition-all">
+                                    {sdk}
+                                </button>
+                            ))}
                         </div>
-                        <h3 className="font-bold text-white text-lg">Instant SDK Generation</h3>
                     </div>
-                    <p className="text-gray-500 text-sm leading-relaxed mb-6">
-                        Upload your Swagger/OpenAPI spec and get a fully typed SDK in TypeScript, Go, or Python.
-                    </p>
-                    <button className="w-full py-4 rounded-2xl border border-teal-500/20 text-teal-400 font-bold text-sm hover:bg-teal-500 hover:text-black transition-all">
-                        Upload Specification
-                    </button>
-                </motion.div>
+                </div>
 
-                <motion.div 
-                    initial={{ opacity: 0, scale: 0.98 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ delay: 0.3 }}
-                    className="p-8 rounded-3xl border border-white/5 bg-gradient-to-br from-blue-500/5 to-transparent relative group"
-                >
-                    <div className="flex items-center gap-4 mb-6">
-                        <div className="w-12 h-12 rounded-2xl bg-blue-500 flex items-center justify-center text-black">
-                            <Box size={24} />
+                {/* Endpoint Explorer Prototype */}
+                <div className="lg:col-span-3 space-y-6">
+                    <div className="flex items-center justify-between">
+                        <h3 className="text-white font-bold text-sm tracking-tight flex items-center gap-2">
+                            <Smartphone size={16} className="text-teal-400" />
+                            Active Endpoint Map
+                        </h3>
+                        <div className="flex gap-2">
+                            <div className="relative">
+                                <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500" size={14} />
+                                <input 
+                                    type="text" 
+                                    placeholder="SEARCH ENDPOINTS..." 
+                                    className="bg-white/5 border border-white/10 rounded-xl pl-9 pr-4 py-2 text-[10px] font-bold text-white focus:outline-none focus:border-teal-400 w-48"
+                                />
+                            </div>
                         </div>
-                        <h3 className="font-bold text-white text-lg">Mocking Service</h3>
                     </div>
-                    <p className="text-gray-500 text-sm leading-relaxed mb-6">
-                        Automatically spin up a local mock server based on your API contracts for rapid development.
-                    </p>
-                    <button className="w-full py-4 rounded-2xl border border-blue-500/20 text-blue-400 font-bold text-sm hover:bg-blue-500 hover:text-black transition-all">
-                        Launch Mock Server
-                    </button>
-                </motion.div>
+
+                    <div className="space-y-4">
+                        {[
+                            { method: "GET", path: "/v1/users/profile", status: "200 OK", load: "High" },
+                            { method: "POST", path: "/v1/auth/login", status: "201 Created", load: "Critical" },
+                            { method: "PUT", path: "/v1/billing/subscription", status: "Verify", load: "Normal" },
+                            { method: "DELETE", path: "/v1/admin/cache", status: "Protected", load: "Idle" }
+                        ].map((api, i) => (
+                            <div key={i} className="p-6 rounded-[2rem] bg-white/[0.02] border border-white/5 hover:border-teal-400/30 transition-all group flex items-center justify-between">
+                                <div className="flex items-center gap-6">
+                                    <span className={`w-16 text-center py-1 rounded-lg text-[10px] font-black border ${
+                                        api.method === 'GET' ? 'border-emerald-500/30 text-emerald-400 bg-emerald-500/5' :
+                                        api.method === 'POST' ? 'border-blue-500/30 text-blue-400 bg-blue-500/5' :
+                                        api.method === 'PUT' ? 'border-amber-500/30 text-amber-400 bg-amber-500/5' :
+                                        'border-red-500/30 text-red-400 bg-red-500/5'
+                                    }`}>
+                                        {api.method}
+                                    </span>
+                                    <div>
+                                        <p className="text-white font-mono text-xs font-bold">{api.path}</p>
+                                        <p className="text-[10px] text-gray-500 uppercase font-black mt-1 tracking-widest">{api.status} • {api.load} Load</p>
+                                    </div>
+                                </div>
+                                <div className="flex gap-2 opacity-0 group-hover:opacity-100 transition-all">
+                                    <button className="px-4 py-2 rounded-lg bg-teal-400 text-black font-black text-[9px] uppercase tracking-widest">
+                                        Mock
+                                    </button>
+                                    <button className="px-4 py-2 rounded-lg bg-white/5 border border-white/10 text-white font-black text-[9px] uppercase tracking-widest">
+                                        Docs
+                                    </button>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                </div>
             </div>
         </div>
     );
